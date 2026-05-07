@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Para Você bebe ❤️</title>
+
+<style>
+body{
+    margin:0;
+    padding:0;
+    background: linear-gradient(#ffccd5,#ffe6f0);
+    font-family: Arial;
+    overflow:hidden;
+    text-align:center;
+    color:#b30059;
+}
+
+.container{
+    margin-top:100px;
+    padding:20px;
+}
+
+h1{
+    font-size:50px;
+}
+
+p{
+    font-size:24px;
+    width:70%;
+    margin:auto;
+    line-height:1.6;
+}
+
+button{
+    padding:15px 30px;
+    font-size:20px;
+    border:none;
+    border-radius:20px;
+    background:#ff4d88;
+    color:white;
+    cursor:pointer;
+}
+
+.hearts{
+    position:fixed;
+    top:-10%;
+    width:100%;
+    font-size:30px;
+    animation:fall 10s linear infinite;
+}
+
+@keyframes fall{
+    to{
+        transform:translateY(120vh);
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="hearts">💖 💕 💗 💞 💓 💘</div>
+
+<div class="container">
+
+<h1>Uma carta pra você ❤️</h1>
+
+<button onclick="mostrarCarta()">Clique aqui</button>
+
+<div id="carta" style="display:none; margin-top:30px;">
+
+<p id="texto"></p>
+
+<audio controls autoplay loop>
+<source src="musica.mp3" type="audio/mpeg">
+</audio>
+
+</div>
+
+</div>
+
+<script>
+
+function mostrarCarta(){
+document.getElementById("carta").style.display="block";
+escrever();
+}
+
+let mensagem = "Desde que você apareceu, tudo ficou mais bonito na minha vida. ❤️";
+let i = 0;
+
+function escrever(){
+if(i < mensagem.length){
+document.getElementById("texto").innerHTML += mensagem.charAt(i);
+i++;
+setTimeout(escrever,50);
+}
+}
+
+</script>
+
+</body>
+</html>
