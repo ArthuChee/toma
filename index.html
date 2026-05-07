@@ -1,53 +1,100 @@
+# 💖 Site Romântico Completo (Pronto pra Copiar)
+
+## 📌 Como usar
+
+1. Abra seu arquivo `index.html`
+2. Apague tudo
+3. Cole TODO esse código
+4. Salve com `Commit changes`
+5. Envie sua música MP3 chamada:
+
+```txt
+musica.mp3
+```
+
+6. Se quiser colocar foto:
+
+```txt
+foto.jpg
+```
+
+---
+
+# 💻 Código Completo
+
+```html
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Para Você bebe ❤️</title>
+<title>Para Você ❤️</title>
 
 <style>
-body{
+
+*{
     margin:0;
     padding:0;
-    background: linear-gradient(#ffccd5,#ffe6f0);
-    font-family: Arial;
+    box-sizing:border-box;
+}
+
+body{
+    height:100vh;
     overflow:hidden;
+    font-family:Arial, sans-serif;
+    background:linear-gradient(180deg,#ffccd5,#ffe6f0);
+    display:flex;
+    justify-content:center;
+    align-items:center;
     text-align:center;
     color:#b30059;
 }
 
 .container{
-    margin-top:100px;
-    padding:20px;
+    z-index:2;
+    padding:30px;
+    max-width:800px;
 }
 
 h1{
-    font-size:50px;
+    font-size:55px;
+    margin-bottom:20px;
 }
 
-p{
+#texto{
     font-size:24px;
-    width:70%;
-    margin:auto;
-    line-height:1.6;
+    line-height:1.8;
+    margin-top:30px;
 }
 
 button{
-    padding:15px 30px;
-    font-size:20px;
+    padding:15px 35px;
     border:none;
-    border-radius:20px;
+    border-radius:30px;
     background:#ff4d88;
     color:white;
+    font-size:22px;
     cursor:pointer;
+    transition:0.3s;
+    box-shadow:0 0 20px rgba(0,0,0,0.2);
 }
 
-.hearts{
-    position:fixed;
+button:hover{
+    transform:scale(1.05);
+}
+
+img{
+    width:250px;
+    border-radius:20px;
+    margin-top:25px;
+    box-shadow:0 0 20px rgba(0,0,0,0.2);
+}
+
+.heart{
+    position:absolute;
+    color:red;
+    animation:fall linear infinite;
     top:-10%;
-    width:100%;
-    font-size:30px;
-    animation:fall 10s linear infinite;
 }
 
 @keyframes fall{
@@ -55,24 +102,27 @@ button{
         transform:translateY(120vh);
     }
 }
+
 </style>
 </head>
 
 <body>
 
-<div class="hearts">💖 💕 💗 💞 💓 💘</div>
-
 <div class="container">
 
-<h1>Uma carta pra você ❤️</h1>
+<h1>Para Você ❤️</h1>
 
-<button onclick="mostrarCarta()">Clique aqui</button>
+<button onclick="iniciar()">Clique Aqui</button>
 
-<div id="carta" style="display:none; margin-top:30px;">
+<div id="conteudo" style="display:none;">
 
 <p id="texto"></p>
 
-<audio controls autoplay loop>
+<img src="foto.jpg" alt="Nossa foto">
+
+<br><br>
+
+<audio id="musica" controls loop>
 <source src="musica.mp3" type="audio/mpeg">
 </audio>
 
@@ -82,23 +132,103 @@ button{
 
 <script>
 
-function mostrarCarta(){
-document.getElementById("carta").style.display="block";
-escrever();
-}
+let mensagem = `
+Desde que você entrou na minha vida,
+tudo ficou mais bonito.
 
-let mensagem = "Desde que você apareceu, tudo ficou mais bonito na minha vida. ❤️";
+Seu sorriso virou meu lugar favorito,
+e cada momento com você se tornou especial.
+
+Esse site é só uma pequena forma
+de mostrar o quanto você é importante pra mim ❤️
+`;
+
 let i = 0;
 
+function iniciar(){
+
+    document.getElementById("conteudo").style.display = "block";
+
+    document.getElementById("musica").play();
+
+    escrever();
+
+}
+
 function escrever(){
-if(i < mensagem.length){
-document.getElementById("texto").innerHTML += mensagem.charAt(i);
-i++;
-setTimeout(escrever,50);
+
+    if(i < mensagem.length){
+
+        document.getElementById("texto").innerHTML += mensagem.charAt(i);
+
+        i++;
+
+        setTimeout(escrever,50);
+    }
 }
+
+function criarCoracao(){
+
+    const heart = document.createElement("div");
+
+    heart.classList.add("heart");
+
+    heart.innerHTML = "❤️";
+
+    heart.style.left = Math.random() * 100 + "vw";
+
+    heart.style.fontSize = Math.random() * 20 + 20 + "px";
+
+    heart.style.animationDuration = Math.random() * 3 + 5 + "s";
+
+    document.body.appendChild(heart);
+
+    setTimeout(()=>{
+        heart.remove();
+    },8000);
 }
+
+setInterval(criarCoracao,300);
 
 </script>
 
 </body>
 </html>
+```
+
+---
+
+# 📸 Como colocar foto
+
+No GitHub:
+
+1. Add file
+2. Upload files
+3. Envie sua foto
+4. Renomeie pra:
+
+```txt
+foto.jpg
+```
+
+---
+
+# 🎵 Como colocar música
+
+Envie o MP3 com o nome:
+
+```txt
+musica.mp3
+```
+
+---
+
+# 🌐 Abrir o site
+
+Depois do GitHub Pages ativado, o link vai ficar assim:
+
+```txt
+https://SEUNOME.github.io/toma/
+```
+
+Aí é só mandar pra pessoa 💖
