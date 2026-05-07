@@ -1,150 +1,61 @@
 <!DOCTYPE html>
-<html lang="pt-br">
-
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Para Você ❤️</title>
-
-<style>
-
-body{
-    margin:0;
-    padding:0;
-    background:linear-gradient(#ffccd5,#ffe6f0);
-    font-family:Arial;
-    text-align:center;
-    overflow:hidden;
-    color:#b30059;
-}
-
-.container{
-    margin-top:100px;
-    padding:20px;
-}
-
-h1{
-    font-size:50px;
-}
-
-#texto{
-    font-size:24px;
-    width:70%;
-    margin:auto;
-    line-height:1.6;
-}
-
-button{
-    padding:15px 30px;
-    border:none;
-    border-radius:20px;
-    background:#ff4d88;
-    color:white;
-    font-size:20px;
-    cursor:pointer;
-}
-
-img{
-    width:250px;
-    border-radius:20px;
-    margin-top:20px;
-}
-
-.heart{
-    position:fixed;
-    top:-10%;
-    animation:fall linear infinite;
-}
-
-@keyframes fall{
-    to{
-        transform:translateY(120vh);
-    }
-}
-
-</style>
-</head>
-
-<body>
-
-<div class="container">
-
-<h1>Para Você ❤️</h1>
-
-<button onclick="iniciar()">Clique Aqui</button>
-
-<div id="conteudo" style="display:none;">
-
-<p id="texto"></p>
-
-<img src="foto.jpg">
-
-<br><br>
-
-<audio id="musica" controls loop>
-<source src="musica.mp3" type="audio/mpeg">
-</audio>
-
-</div>
-
-</div>
-
-<script>
-
-let mensagem = "Desde que você entrou na minha vida, tudo ficou mais bonito ❤️";
-
-let i = 0;
-
-function iniciar(){
-
-document.getElementById("conteudo").style.display = "block";
-
-document.getElementById("musica").play();
-
-escrever();
-
-}
 
 function escrever(){
 
-if(i < mensagem.length){
+    if(i < mensagem.length){
 
-document.getElementById("texto").innerHTML += mensagem.charAt(i);
+        document.getElementById('texto').innerHTML += mensagem.charAt(i);
 
-i++;
+        i++;
 
-setTimeout(escrever,50);
-
+        setTimeout(escrever,45);
+    }
 }
 
+function criarEstrelas(){
+
+    const bg = document.getElementById('background');
+
+    for(let i=0;i<80;i++){
+
+        const star = document.createElement('div');
+
+        star.classList.add('star');
+
+        star.style.left = Math.random()*100 + 'vw';
+
+        star.style.top = Math.random()*100 + 'vh';
+
+        star.style.animationDuration = Math.random()*3 + 1 + 's';
+
+        bg.appendChild(star);
+    }
 }
+
+criarEstrelas();
 
 function criarCoracao(){
 
-const heart = document.createElement("div");
+    const heart = document.createElement('div');
 
-heart.classList.add("heart");
+    heart.classList.add('heart');
 
-heart.innerHTML = "❤️";
+    heart.innerHTML = '❤';
 
-heart.style.left = Math.random() * 100 + "vw";
+    heart.style.left = Math.random()*100 + 'vw';
 
-heart.style.fontSize = Math.random() * 20 + 20 + "px";
+    heart.style.fontSize = Math.random()*20 + 15 + 'px';
 
-heart.style.animationDuration = Math.random() * 3 + 5 + "s";
+    heart.style.animationDuration = Math.random()*5 + 5 + 's';
 
-document.body.appendChild(heart);
+    document.body.appendChild(heart);
 
-setTimeout(() => {
-
-heart.remove();
-
-},8000);
-
+    setTimeout(()=>{
+        heart.remove();
+    },10000);
 }
 
-setInterval(criarCoracao,300);
+setInterval(criarCoracao,400);
 
 </script>
 
