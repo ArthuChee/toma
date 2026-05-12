@@ -5,12 +5,15 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Para Você 💖</title>
 
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
+
 <style>
+
 *{margin:0;padding:0;box-sizing:border-box;}
 html{scroll-behavior:smooth;}
 
 body{
-font-family:Arial;
+font-family:'Poppins',sans-serif;
 background:black;
 color:white;
 overflow-x:hidden;
@@ -39,13 +42,32 @@ justify-content:center;
 align-items:center;
 }
 
-button{
+/* TÍTULO */
+h1{
+font-family:'Playfair Display',serif;
+font-size:50px;
+color:#ffd6e0;
+}
+
+/* BOTÃO COM BATIDA */
+.botao{
 padding:15px 30px;
 border:none;
 border-radius:30px;
-background:#ff4d88;
+background:linear-gradient(45deg,#ff4d88,#ff99ac);
 color:white;
 font-size:18px;
+cursor:pointer;
+animation:batida 1.2s infinite;
+}
+
+@keyframes batida{
+0%{transform:scale(1);}
+14%{transform:scale(1.15);}
+28%{transform:scale(1);}
+42%{transform:scale(1.15);}
+70%{transform:scale(1);}
+100%{transform:scale(1);}
 }
 
 /* TEXTOS */
@@ -53,12 +75,14 @@ font-size:18px;
 font-size:22px;
 max-width:700px;
 line-height:1.8;
-background:rgba(0,0,0,0.6);
-padding:20px;
+background:rgba(0,0,0,0.65);
+backdrop-filter:blur(8px);
+padding:25px;
 border-radius:20px;
+color:#ffe4ec;
 }
 
-/* FUNDOS DIFERENTES */
+/* FUNDOS */
 .fundo1{background:url('fundo1.jpg') center/cover no-repeat;}
 .fundo2{background:url('fundo2.jpg') center/cover no-repeat;}
 .fundo3{background:url('fundo3.jpg') center/cover no-repeat;}
@@ -73,7 +97,7 @@ margin:10px;
 border-radius:20px;
 }
 
-/* BOTÃO SECRETO */
+/* FINAL */
 #segredo{
 opacity:0;
 margin-top:20px;
@@ -83,8 +107,10 @@ margin-top:20px;
 .heart{
 position:fixed;
 top:-10%;
-color:red;
+color:#ff7aa2;
+opacity:0.7;
 animation:cair linear infinite;
+pointer-events:none;
 }
 
 @keyframes cair{
@@ -99,7 +125,7 @@ to{transform:translateY(120vh);}
 <!-- CAPA -->
 <div class="capa">
 <h1>Para Você 💖</h1>
-<button onclick="iniciar()">Abrir Carta</button>
+<button class="botao" onclick="iniciar()">Abrir Carta</button>
 </div>
 
 <!-- FRASE 1 -->
@@ -130,7 +156,7 @@ to{transform:translateY(120vh);}
 <section class="fundoFinal">
 <p class="texto">
 E mesmo depois de tudo...
-eu ainda escolheria você 💖
+eu ainda escolheria você em todas as versões da minha vida 💖
 </p>
 
 <button id="segredo" onclick="mostrar()">Clique aqui</button>
@@ -141,8 +167,13 @@ Eu te amo ❤️
 
 </section>
 
+<!-- ÁUDIOS -->
 <audio id="musica" loop>
 <source src="musica.mp3">
+</audio>
+
+<audio id="batidaSom">
+<source src="batida.mp3">
 </audio>
 
 <script>
@@ -167,8 +198,20 @@ let i=0, j=0;
 
 /* INICIO */
 function iniciar(){
+
 document.getElementById("musica").play();
+
+const batida = document.getElementById("batidaSom");
+batida.volume = 0.3;
+batida.play();
+
+/* para batida depois de 5s */
+setTimeout(()=>{
+batida.pause();
+},5000);
+
 document.querySelector(".fundo1").scrollIntoView();
+
 escrever1();
 }
 
