@@ -18,6 +18,40 @@ color:white;
 overflow-x:hidden;
 }
 
+/* CAPA (NOVA PARTE) */
+.capa{
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+background:url('capa.jpg') center/cover no-repeat;
+position:relative;
+}
+
+.capa::before{
+content:"";
+position:absolute;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.4);
+}
+
+.capa h1, .capa button{
+position:relative;
+z-index:2;
+}
+
+button{
+padding:15px 30px;
+font-size:18px;
+border:none;
+border-radius:30px;
+background:#ff4d88;
+color:white;
+cursor:pointer;
+}
+
 /* SEÇÕES */
 section{
 min-height:100vh;
@@ -27,22 +61,6 @@ align-items:center;
 text-align:center;
 padding:40px;
 flex-direction:column;
-}
-
-/* INICIO */
-.inicio{
-background:url('fundo1.jpg') center/cover no-repeat;
-}
-
-/* BOTÃO */
-button{
-padding:15px 30px;
-font-size:18px;
-border:none;
-border-radius:30px;
-background:#ff4d88;
-color:white;
-cursor:pointer;
 }
 
 /* TEXTOS */
@@ -95,6 +113,7 @@ position:fixed;
 top:-10%;
 color:#ff7aa2;
 animation:cair linear infinite;
+pointer-events:none;
 }
 
 @keyframes cair{
@@ -108,11 +127,11 @@ transform:translateY(120vh);
 
 <body>
 
-<!-- INICIO -->
-<section class="inicio">
+<!-- CAPA -->
+<div class="capa">
 <h1>Para Você 💖</h1>
 <button onclick="iniciar()">Abrir Carta</button>
-</section>
+</div>
 
 <!-- FRASES 1 -->
 <section class="texto" id="texto1">
@@ -217,7 +236,7 @@ function mostrar(){
 document.getElementById("mensagemSecreta").style.display="block";
 }
 
-/* CORAÇÕES CAINDO */
+/* CORAÇÕES */
 function criarCoracao(){
 
 const heart = document.createElement("div");
