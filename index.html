@@ -103,20 +103,6 @@ opacity:0;
 margin-top:20px;
 }
 
-/* CORAÇÕES */
-.heart{
-position:fixed;
-top:-10%;
-color:#ff7aa2;
-opacity:0.7;
-animation:cair linear infinite;
-pointer-events:none;
-}
-
-@keyframes cair{
-to{transform:translateY(120vh);}
-}
-
 </style>
 </head>
 
@@ -205,7 +191,6 @@ const batida = document.getElementById("batidaSom");
 batida.volume = 0.3;
 batida.play();
 
-/* para batida depois de 5s */
 setTimeout(()=>{
 batida.pause();
 },5000);
@@ -242,20 +227,6 @@ document.getElementById("segredo").style.opacity="1";
 function mostrar(){
 document.getElementById("mensagemSecreta").style.display="block";
 }
-
-/* CORAÇÕES */
-function criarCoracao(){
-const heart = document.createElement("div");
-heart.classList.add("heart");
-heart.innerHTML="❤️";
-heart.style.left=Math.random()*100+"vw";
-heart.style.fontSize=Math.random()*20+15+"px";
-heart.style.animationDuration=Math.random()*3+5+"s";
-document.body.appendChild(heart);
-setTimeout(()=>{heart.remove();},8000);
-}
-
-setInterval(criarCoracao,300);
 
 </script>
 
