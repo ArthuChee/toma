@@ -120,7 +120,7 @@ transform:scale(1.05);
 box-shadow:0 5px 15px rgba(255,0,100,0.4);
 }
 
-/* SURPRESA FINAL */
+/* SURPRESA */
 #surpresa{
 position:fixed;
 top:0;
@@ -137,10 +137,13 @@ transition:1s;
 z-index:999;
 }
 
+.conteudo-surpresa{
+text-align:center;
+}
+
 #surpresa p{
 color:#ffd6e0;
 font-size:40px;
-text-align:center;
 transform:scale(0.8);
 transition:1s;
 }
@@ -152,6 +155,24 @@ pointer-events:auto;
 
 #surpresa.ativo p{
 transform:scale(1.1);
+}
+
+/* BOTÃO VOLTAR */
+.conteudo-surpresa button{
+margin-top:20px;
+padding:10px 20px;
+border:none;
+border-radius:20px;
+background:#ff4d88;
+color:white;
+font-size:16px;
+cursor:pointer;
+transition:0.3s;
+}
+
+.conteudo-surpresa button:hover{
+transform:scale(1.05);
+box-shadow:0 5px 15px rgba(255,0,100,0.4);
 }
 
 </style>
@@ -202,10 +223,16 @@ eu ainda escolheria você em todas as versões da minha vida 💖
 
 <!-- SURPRESA -->
 <div id="surpresa">
+<div class="conteudo-surpresa">
+
 <p>
 Eu te escolheria<br>
 em todas as vidas ❤️
 </p>
+
+<button onclick="fecharSurpresa()">Voltar 💖</button>
+
+</div>
 </div>
 
 <!-- ÁUDIOS -->
@@ -282,6 +309,10 @@ document.getElementById("segredo").style.opacity="1";
 /* SURPRESA */
 function mostrar(){
 document.getElementById("surpresa").classList.add("ativo");
+}
+
+function fecharSurpresa(){
+document.getElementById("surpresa").classList.remove("ativo");
 }
 
 </script>
