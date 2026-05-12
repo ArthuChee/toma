@@ -5,97 +5,76 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Para Você 💖</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
-
 <style>
 
 *{margin:0;padding:0;box-sizing:border-box;}
 
 body{
-    min-height:100vh;
+    font-family:Arial, sans-serif;
+    overflow-x:hidden;
+}
+
+/* TELA INICIAL */
+.inicio{
+    height:100vh;
     display:flex;
     justify-content:center;
     align-items:center;
     background:url('fundo1.jpg') center/cover no-repeat;
-    font-family:'Poppins',sans-serif;
-    color:white;
-    overflow-x:hidden;
-    transition:1.5s;
-}
-
-/* overlay */
-.overlay{
-    position:fixed;
-    width:100%;
-    height:100%;
-    background:black;
-    opacity:0;
-    transition:1s;
-    z-index:5;
-}
-
-/* luz */
-.luz{
-    position:fixed;
-    width:200%;
-    height:100%;
-    background:linear-gradient(120deg,transparent,rgba(255,255,255,0.2),transparent);
-    animation:luz 6s infinite;
-    z-index:4;
-}
-
-@keyframes luz{
-    0%{left:-100%;}
-    100%{left:100%;}
-}
-
-.card{
-    background:rgba(255,255,255,0.08);
-    backdrop-filter:blur(15px);
-    padding:40px;
-    border-radius:25px;
-    text-align:center;
-    z-index:10;
-    animation:batida 4s infinite;
-}
-
-@keyframes batida{
-    0%{transform:scale(1);}
-    50%{transform:scale(1.01);}
-    100%{transform:scale(1);}
-}
-
-h1{
-    font-family:'Playfair Display';
-    font-size:50px;
-    color:#ffd6e0;
 }
 
 button{
-    margin-top:20px;
     padding:15px 30px;
+    font-size:18px;
     border:none;
     border-radius:30px;
-    background:linear-gradient(45deg,#ff4d88,#ff99ac);
+    background:#ff4d88;
     color:white;
     cursor:pointer;
 }
 
-#conteudo{
+/* PARTE TEXTO */
+.parte-texto{
+    position:relative;
+    width:100%;
+    min-height:100vh;
     display:none;
-    margin-top:20px;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    background:url('fundo2.jpg') center/cover no-repeat;
 }
 
-#texto{
-    margin-top:20px;
+.parte-texto::before{
+    content:"";
+    position:absolute;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.6);
+}
+
+.conteudo-texto{
+    position:relative;
+    z-index:2;
+    max-width:700px;
+    padding:20px;
+    font-size:22px;
     line-height:1.8;
-    white-space:pre-line;
+    color:#ffe4ec;
+}
+
+/* PARTE FOTOS */
+.parte-fotos{
+    display:none;
+    height:100vh;
+    justify-content:center;
+    align-items:center;
+    background:black;
 }
 
 .slideshow{
     width:300px;
     height:400px;
-    margin:20px auto;
     position:relative;
 }
 
@@ -111,18 +90,16 @@ button{
 
 .slide.active{opacity:1;}
 
-.particula{
-    position:fixed;
-    width:3px;
-    height:3px;
-    background:white;
-    border-radius:50%;
-    animation:subir linear infinite;
-}
-
-@keyframes subir{
-    from{transform:translateY(100vh);}
-    to{transform:translateY(-120vh);}
+/* FINAL */
+.parte-final{
+    display:none;
+    height:100vh;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    background:black;
+    color:#ffd6e0;
+    font-size:24px;
 }
 
 </style>
@@ -130,84 +107,82 @@ button{
 
 <body>
 
-<div class="overlay" id="overlay"></div>
-<div class="luz"></div>
-
-<div class="card">
-
-<h1>Para Você 💖</h1>
-
-<button onclick="abrirCarta()">Abrir Carta</button>
-
-<div id="conteudo">
-
-<p id="texto"></p>
-
-<div class="slideshow">
-<img class="slide active" src="foto1.jpg">
-<img class="slide" src="foto2.jpg">
-<img class="slide" src="foto3.jpg">
-<img class="slide" src="foto4.jpg">
+<!-- TELA INICIAL -->
+<div class="inicio">
+    <button onclick="abrir()">Abrir Carta 💌</button>
 </div>
 
-<p id="contador"></p>
+<!-- TEXTO -->
+<div class="parte-texto" id="textoParte">
+    <div class="conteudo-texto">
+        <p id="texto"></p>
+    </div>
+</div>
 
-<audio id="musica" controls loop>
+<!-- FOTOS -->
+<div class="parte-fotos" id="fotosParte">
+    <div class="slideshow">
+        <img class="slide active" src="foto1.jpg">
+        <img class="slide" src="foto2.jpg">
+        <img class="slide" src="foto3.jpg">
+        <img class="slide" src="foto4.jpg">
+    </div>
+</div>
+
+<!-- FINAL -->
+<div class="parte-final" id="finalParte">
+    <p>
+        E se eu pudesse escolher de novo... escolheria você todas as vezes 💖
+    </p>
+</div>
+
+<audio id="musica" loop>
 <source src="musica.mp3">
 </audio>
 
-<p id="final" style="display:none;">
-E se eu pudesse escolher de novo... escolheria você todas as vezes 💖
-</p>
-
-<button id="segredo" style="opacity:0;" onclick="alert('Eu te amo ❤️')">?</button>
-
-</div>
-
-</div>
-
 <script>
 
+/* ✍️ ESCREVE SUA MENSAGEM AQUI */
 const mensagem = `
-Desde que você apareceu,
-tudo mudou pra melhor.
+Coloca aqui suas palavras...
 
-Seu sorriso virou meu lugar favorito,
-e cada momento com você é especial.
+do seu jeito
 
-Esse site é só uma forma de te lembrar
-o quanto você é importante pra mim 💖
+isso que vai aparecer primeiro 💖
 `;
 
 let i = 0;
 
-function abrirCarta(){
-
-document.getElementById("overlay").style.opacity="1";
-
-setTimeout(()=>{
-document.body.style.background="url('fundo2.jpg') center/cover no-repeat";
-},800);
-
-setTimeout(()=>{
-document.getElementById("conteudo").style.display="block";
-document.getElementById("musica").play();
-escrever();
-document.getElementById("overlay").style.opacity="0.4";
-},1600);
-
-criarParticulas();
-coracaoEstrelas();
+function abrir(){
+    document.querySelector(".inicio").style.display="none";
+    document.getElementById("textoParte").style.display="flex";
+    document.getElementById("musica").play();
+    escrever();
 }
 
 function escrever(){
-if(i<mensagem.length){
-document.getElementById("texto").innerHTML+=mensagem.charAt(i);
-i++;
-setTimeout(escrever,40);
-}
+    if(i < mensagem.length){
+        document.getElementById("texto").innerHTML += mensagem.charAt(i);
+        i++;
+        setTimeout(escrever,40);
+    } else {
+        setTimeout(mostrarFotos,2000);
+    }
 }
 
+function mostrarFotos(){
+    document.getElementById("textoParte").style.display="none";
+    document.getElementById("fotosParte").style.display="flex";
+
+    setTimeout(mostrarFinal,10000);
+}
+
+function mostrarFinal(){
+    document.getElementById("fotosParte").style.display="none";
+    document.getElementById("finalParte").style.display="flex";
+}
+
+/* SLIDES */
 const slides=document.querySelectorAll(".slide");
 let slideAtual=0;
 
@@ -216,43 +191,6 @@ slides[slideAtual].classList.remove("active");
 slideAtual=(slideAtual+1)%slides.length;
 slides[slideAtual].classList.add("active");
 },3000);
-
-function criarParticulas(){
-for(let i=0;i<40;i++){
-let p=document.createElement("div");
-p.classList.add("particula");
-p.style.left=Math.random()*100+"vw";
-p.style.animationDuration=(Math.random()*5+5)+"s";
-document.body.appendChild(p);
-}
-}
-
-function atualizarContador(){
-const inicio=new Date("2024-01-01");
-const agora=new Date();
-const diff=agora-inicio;
-const dias=Math.floor(diff/(1000*60*60*24));
-document.getElementById("contador").innerHTML=`${dias} dias juntos ❤️`;
-}
-setInterval(atualizarContador,1000);
-
-setTimeout(()=>{
-document.getElementById("final").style.display="block";
-},15000);
-
-setTimeout(()=>{
-document.getElementById("segredo").style.opacity="1";
-},20000);
-
-function coracaoEstrelas(){
-for(let i=0;i<80;i++){
-let star=document.createElement("div");
-star.classList.add("particula");
-star.style.left=(50+Math.random()*20-10)+"%";
-star.style.top=(40+Math.random()*20-10)+"%";
-document.body.appendChild(star);
-}
-}
 
 </script>
 
