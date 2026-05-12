@@ -9,97 +9,86 @@
 
 *{margin:0;padding:0;box-sizing:border-box;}
 
-body{
-    font-family:Arial, sans-serif;
-    overflow-x:hidden;
+html{
+scroll-behavior:smooth;
 }
 
-/* TELA INICIAL */
+body{
+font-family:Arial;
+background:black;
+color:white;
+}
+
+/* SEÇÕES */
+section{
+min-height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+text-align:center;
+padding:40px;
+}
+
+/* INICIO */
 .inicio{
-    height:100vh;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    background:url('fundo1.jpg.jpeg') center/cover no-repeat;
+background:url('fundo1.jpg') center/cover no-repeat;
+flex-direction:column;
 }
 
 button{
-    padding:15px 30px;
-    font-size:18px;
-    border:none;
-    border-radius:30px;
-    background:#ff4d88;
-    color:white;
-    cursor:pointer;
+padding:15px 30px;
+font-size:18px;
+border:none;
+border-radius:30px;
+background:#ff4d88;
+color:white;
+cursor:pointer;
 }
 
-/* PARTE TEXTO */
-.parte-texto{
-    position:relative;
-    width:100%;
-    min-height:100vh;
-    display:none;
-    justify-content:center;
-    align-items:center;
-    text-align:center;
-    background:url('fundo2.jpg') center/cover no-repeat;
+/* TEXTO */
+.texto{
+background:url('fundo2.jpg') center/cover no-repeat;
+position:relative;
 }
 
-.parte-texto::before{
-    content:"";
-    position:absolute;
-    width:100%;
-    height:100%;
-    background:rgba(0,0,0,0.6);
+.texto::before{
+content:"";
+position:absolute;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.6);
 }
 
-.conteudo-texto{
-    position:relative;
-    z-index:2;
-    max-width:700px;
-    padding:20px;
-    font-size:22px;
-    line-height:1.8;
-    color:#ffe4ec;
+.texto p{
+position:relative;
+font-size:22px;
+max-width:700px;
+line-height:1.8;
+color:#ffe4ec;
 }
 
-/* PARTE FOTOS */
-.parte-fotos{
-    display:none;
-    height:100vh;
-    justify-content:center;
-    align-items:center;
-    background:black;
+/* FOTOS */
+.fotos{
+flex-direction:column;
+gap:20px;
 }
 
-.slideshow{
-    width:300px;
-    height:400px;
-    position:relative;
+.fotos img{
+width:90%;
+max-width:400px;
+border-radius:20px;
 }
-
-.slide{
-    position:absolute;
-    width:100%;
-    height:100%;
-    object-fit:cover;
-    border-radius:20px;
-    opacity:0;
-    transition:1s;
-}
-
-.slide.active{opacity:1;}
 
 /* FINAL */
-.parte-final{
-    display:none;
-    height:100vh;
-    justify-content:center;
-    align-items:center;
-    text-align:center;
-    background:black;
-    color:#ffd6e0;
-    font-size:24px;
+.final{
+flex-direction:column;
+gap:20px;
+font-size:22px;
+}
+
+#segredo{
+opacity:0;
+transition:1s;
 }
 
 </style>
@@ -107,34 +96,44 @@ button{
 
 <body>
 
-<!-- TELA INICIAL -->
-<div class="inicio">
-    <button onclick="abrir()">Abrir Carta 💌</button>
-</div>
+<!-- INICIO -->
+<section class="inicio">
+<h1>Para Você 💖</h1>
+<button onclick="iniciar()">Abrir Carta</button>
+</section>
 
-<!-- TEXTO -->
-<div class="parte-texto" id="textoParte">
-    <div class="conteudo-texto">
-        <p id="texto"></p>
-    </div>
-</div>
+<!-- TEXTO INICIAL -->
+<section class="texto" id="texto">
+<p id="mensagem"></p>
+</section>
 
 <!-- FOTOS -->
-<div class="parte-fotos" id="fotosParte">
-    <div class="slideshow">
-        <img class="slide active" src="foto1.jpg">
-        <img class="slide" src="foto2.jpg">
-        <img class="slide" src="foto3.jpg">
-        <img class="slide" src="foto4.jpg">
-    </div>
-</div>
+<section class="fotos">
+<img src="foto1.jpg">
+<img src="foto2.jpg">
+<img src="foto3.jpg">
+<img src="foto4.jpg">
+</section>
 
-<!-- FINAL -->
-<div class="parte-final" id="finalParte">
-    <p>
-        E se eu pudesse escolher de novo... escolheria você todas as vezes 💖
-    </p>
-</div>
+<!-- TEXTO FINAL -->
+<section class="final">
+<p>
+Talvez tudo isso não consiga explicar exatamente o que eu sinto...
+
+mas uma coisa é certa:
+</p>
+
+<p>
+eu escolheria você em todas as versões da minha vida 💖
+</p>
+
+<button id="segredo" onclick="mostrar()">Clique aqui</button>
+
+<p id="mensagemSecreta" style="display:none;">
+Eu te amo ❤️
+</p>
+
+</section>
 
 <audio id="musica" loop>
 <source src="musica.mp3">
@@ -142,55 +141,40 @@ button{
 
 <script>
 
-/* ✍️ ESCREVE SUA MENSAGEM AQUI */
 const mensagem = `
-Coloca aqui suas palavras...
+Desde que você entrou na minha vida,
+tudo ficou mais leve.
 
-do seu jeito
+Seu sorriso virou meu lugar favorito,
+e cada momento com você é especial.
 
-isso que vai aparecer primeiro 💖
+Eu só queria que você soubesse isso... 💖
 `;
 
 let i = 0;
 
-function abrir(){
-    document.querySelector(".inicio").style.display="none";
-    document.getElementById("textoParte").style.display="flex";
-    document.getElementById("musica").play();
-    escrever();
+function iniciar(){
+document.getElementById("musica").play();
+document.getElementById("texto").scrollIntoView();
+escrever();
 }
 
 function escrever(){
-    if(i < mensagem.length){
-        document.getElementById("texto").innerHTML += mensagem.charAt(i);
-        i++;
-        setTimeout(escrever,40);
-    } else {
-        setTimeout(mostrarFotos,2000);
-    }
+if(i < mensagem.length){
+document.getElementById("mensagem").innerHTML += mensagem.charAt(i);
+i++;
+setTimeout(escrever,40);
+}
 }
 
-function mostrarFotos(){
-    document.getElementById("textoParte").style.display="none";
-    document.getElementById("fotosParte").style.display="flex";
+/* BOTÃO SECRETO */
+setTimeout(()=>{
+document.getElementById("segredo").style.opacity = "1";
+},5000);
 
-    setTimeout(mostrarFinal,10000);
+function mostrar(){
+document.getElementById("mensagemSecreta").style.display="block";
 }
-
-function mostrarFinal(){
-    document.getElementById("fotosParte").style.display="none";
-    document.getElementById("finalParte").style.display="flex";
-}
-
-/* SLIDES */
-const slides=document.querySelectorAll(".slide");
-let slideAtual=0;
-
-setInterval(()=>{
-slides[slideAtual].classList.remove("active");
-slideAtual=(slideAtual+1)%slides.length;
-slides[slideAtual].classList.add("active");
-},3000);
 
 </script>
 
