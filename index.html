@@ -9,14 +9,13 @@
 
 *{margin:0;padding:0;box-sizing:border-box;}
 
-html{
-scroll-behavior:smooth;
-}
+html{scroll-behavior:smooth;}
 
 body{
 font-family:Arial;
 background:black;
 color:white;
+overflow-x:hidden;
 }
 
 /* SEÇÕES */
@@ -27,14 +26,15 @@ justify-content:center;
 align-items:center;
 text-align:center;
 padding:40px;
+flex-direction:column;
 }
 
 /* INICIO */
 .inicio{
 background:url('fundo1.jpg') center/cover no-repeat;
-flex-direction:column;
 }
 
+/* BOTÃO */
 button{
 padding:15px 30px;
 font-size:18px;
@@ -45,7 +45,7 @@ color:white;
 cursor:pointer;
 }
 
-/* TEXTO */
+/* TEXTOS */
 .texto{
 background:url('fundo2.jpg') center/cover no-repeat;
 position:relative;
@@ -69,19 +69,17 @@ color:#ffe4ec;
 
 /* FOTOS */
 .fotos{
-flex-direction:column;
 gap:20px;
 }
 
 .fotos img{
 width:90%;
-max-width:400px;
+max-width:350px;
 border-radius:20px;
 }
 
 /* FINAL */
 .final{
-flex-direction:column;
 gap:20px;
 font-size:22px;
 }
@@ -89,6 +87,20 @@ font-size:22px;
 #segredo{
 opacity:0;
 transition:1s;
+}
+
+/* CORAÇÕES */
+.heart{
+position:fixed;
+top:-10%;
+color:#ff7aa2;
+animation:cair linear infinite;
+}
+
+@keyframes cair{
+to{
+transform:translateY(120vh);
+}
 }
 
 </style>
@@ -102,29 +114,38 @@ transition:1s;
 <button onclick="iniciar()">Abrir Carta</button>
 </section>
 
-<!-- TEXTO INICIAL -->
-<section class="texto" id="texto">
-<p id="mensagem"></p>
+<!-- FRASES 1 -->
+<section class="texto" id="texto1">
+<p id="msg1"></p>
 </section>
 
-<!-- FOTOS -->
+<!-- FOTOS 1 -->
 <section class="fotos">
 <img src="foto1.jpg">
 <img src="foto2.jpg">
 <img src="foto3.jpg">
-<img src="foto4.jpg">
 </section>
 
-<!-- TEXTO FINAL -->
+<!-- FRASES 2 -->
+<section class="texto">
+<p id="msg2"></p>
+</section>
+
+<!-- FOTOS 2 -->
+<section class="fotos">
+<img src="foto4.jpg">
+<img src="foto5.jpg">
+<img src="foto6.jpg">
+</section>
+
+<!-- FINAL -->
 <section class="final">
 <p>
-Talvez tudo isso não consiga explicar exatamente o que eu sinto...
-
-mas uma coisa é certa:
+E mesmo depois de tudo isso...
 </p>
 
 <p>
-eu escolheria você em todas as versões da minha vida 💖
+eu ainda escolheria você em todas as versões da minha vida 💖
 </p>
 
 <button id="segredo" onclick="mostrar()">Clique aqui</button>
@@ -141,40 +162,85 @@ Eu te amo ❤️
 
 <script>
 
-const mensagem = `
+/* TEXTOS */
+const texto1 = `
 Desde que você entrou na minha vida,
-tudo ficou mais leve.
+tudo mudou.
 
-Seu sorriso virou meu lugar favorito,
-e cada momento com você é especial.
+Os dias ficaram mais leves,
+e o seu sorriso virou meu lugar favorito...
+`;
 
-Eu só queria que você soubesse isso... 💖
+const texto2 = `
+Cada momento com você
+se tornou especial.
+
+E eu só queria guardar tudo isso
+pra sempre 💖
 `;
 
 let i = 0;
+let j = 0;
 
+/* INICIO */
 function iniciar(){
 document.getElementById("musica").play();
-document.getElementById("texto").scrollIntoView();
-escrever();
+document.getElementById("texto1").scrollIntoView();
+escrever1();
 }
 
-function escrever(){
-if(i < mensagem.length){
-document.getElementById("mensagem").innerHTML += mensagem.charAt(i);
+/* DIGITAÇÃO */
+function escrever1(){
+if(i < texto1.length){
+document.getElementById("msg1").innerHTML += texto1.charAt(i);
 i++;
-setTimeout(escrever,40);
+setTimeout(escrever1,40);
+} else {
+setTimeout(escrever2,2000);
+}
+}
+
+function escrever2(){
+if(j < texto2.length){
+document.getElementById("msg2").innerHTML += texto2.charAt(j);
+j++;
+setTimeout(escrever2,40);
 }
 }
 
 /* BOTÃO SECRETO */
 setTimeout(()=>{
-document.getElementById("segredo").style.opacity = "1";
-},5000);
+document.getElementById("segredo").style.opacity="1";
+},8000);
 
 function mostrar(){
 document.getElementById("mensagemSecreta").style.display="block";
 }
+
+/* CORAÇÕES CAINDO */
+function criarCoracao(){
+
+const heart = document.createElement("div");
+
+heart.classList.add("heart");
+
+heart.innerHTML = "❤️";
+
+heart.style.left = Math.random()*100 + "vw";
+
+heart.style.fontSize = Math.random()*20 + 15 + "px";
+
+heart.style.animationDuration = Math.random()*3 + 5 + "s";
+
+document.body.appendChild(heart);
+
+setTimeout(()=>{
+heart.remove();
+},8000);
+
+}
+
+setInterval(criarCoracao,300);
 
 </script>
 
