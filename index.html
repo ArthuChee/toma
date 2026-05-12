@@ -46,10 +46,11 @@ align-items:center;
 h1{
 font-family:'Playfair Display',serif;
 font-size:50px;
-color:#ffd6e0;
+color:white;
+text-shadow:0 0 15px rgba(0,0,0,0.7);
 }
 
-/* BOTÃO COM BATIDA */
+/* BOTÃO BATENDO */
 .botao{
 padding:15px 30px;
 border:none;
@@ -97,10 +98,60 @@ margin:10px;
 border-radius:20px;
 }
 
-/* FINAL */
+/* BOTÃO SECRETO */
 #segredo{
 opacity:0;
 margin-top:20px;
+padding:12px 25px;
+border:none;
+border-radius:25px;
+background:transparent;
+color:#ff9bb3;
+font-size:16px;
+border:1px solid #ff9bb3;
+cursor:pointer;
+transition:0.3s;
+}
+
+#segredo:hover{
+background:#ff4d88;
+color:white;
+transform:scale(1.05);
+box-shadow:0 5px 15px rgba(255,0,100,0.4);
+}
+
+/* SURPRESA FINAL */
+#surpresa{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.95);
+display:flex;
+justify-content:center;
+align-items:center;
+opacity:0;
+pointer-events:none;
+transition:1s;
+z-index:999;
+}
+
+#surpresa p{
+color:#ffd6e0;
+font-size:40px;
+text-align:center;
+transform:scale(0.8);
+transition:1s;
+}
+
+#surpresa.ativo{
+opacity:1;
+pointer-events:auto;
+}
+
+#surpresa.ativo p{
+transform:scale(1.1);
 }
 
 </style>
@@ -145,13 +196,17 @@ E mesmo depois de tudo...
 eu ainda escolheria você em todas as versões da minha vida 💖
 </p>
 
-<button id="segredo" onclick="mostrar()">Clique aqui</button>
-
-<p id="mensagemSecreta" style="display:none;">
-Eu te amo ❤️
-</p>
+<button id="segredo" onclick="mostrar()">Descubra 💌</button>
 
 </section>
+
+<!-- SURPRESA -->
+<div id="surpresa">
+<p>
+Eu te escolheria<br>
+em todas as vidas ❤️
+</p>
+</div>
 
 <!-- ÁUDIOS -->
 <audio id="musica" loop>
@@ -224,8 +279,9 @@ setTimeout(()=>{
 document.getElementById("segredo").style.opacity="1";
 },8000);
 
+/* SURPRESA */
 function mostrar(){
-document.getElementById("mensagemSecreta").style.display="block";
+document.getElementById("surpresa").classList.add("ativo");
 }
 
 </script>
