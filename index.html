@@ -8,16 +8,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
 
 <style>
-
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-}
-
-html{
-scroll-behavior:smooth;
-}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
 
 body{
 font-family:'Poppins',sans-serif;
@@ -26,7 +18,6 @@ color:white;
 overflow-x:hidden;
 }
 
-/* SEÇÕES */
 section{
 min-height:100vh;
 display:flex;
@@ -39,7 +30,6 @@ background-size:cover;
 background-position:center;
 }
 
-/* CAPA */
 .capa{
 height:100vh;
 background:url('capa.jpg') center/cover no-repeat;
@@ -49,7 +39,6 @@ justify-content:center;
 align-items:center;
 }
 
-/* TITULO */
 h1{
 font-family:'Playfair Display',serif;
 font-size:50px;
@@ -57,7 +46,6 @@ color:white;
 text-shadow:0 0 15px rgba(0,0,0,0.7);
 }
 
-/* BOTÃO INICIAL */
 .botao{
 padding:15px 30px;
 border:none;
@@ -79,7 +67,6 @@ box-shadow:0 5px 20px rgba(255,0,100,0.4);
 100%{transform:scale(1);}
 }
 
-/* TEXTO */
 .texto{
 font-size:22px;
 max-width:700px;
@@ -91,61 +78,49 @@ border-radius:20px;
 color:#ffe4ec;
 }
 
-/* FUNDOS */
-.fundo1{
-background:url('fundo1.jpg') center/cover no-repeat;
-}
+.fundo1{background:url('fundo1.jpg') center/cover no-repeat;}
+.fundo2{background:url('fundo2.jpg') center/cover no-repeat;}
+.fundo3{background:url('fundo3.jpg') center/cover no-repeat;}
+.fundo4{background:url('fundo4.jpg') center/cover no-repeat;}
+.fundoFinal{background:url('fundoFinal.jpg') center/cover no-repeat;}
 
-.fundo2{
-background:url('fundo2.jpg') center/cover no-repeat;
-}
-
-.fundo3{
-background:url('fundo3.jpg') center/cover no-repeat;
-}
-
-.fundo4{
-background:url('fundo4.jpg') center/cover no-repeat;
-}
-
-.fundoFinal{
-background:url('fundoFinal.jpg') center/cover no-repeat;
-}
-
-/* FOTOS */
 .fotos{
-gap:20px;
+gap:25px;
+padding-top:70px;
+padding-bottom:70px;
 }
 
 .fotos img{
-width:90%;
-max-width:350px;
+width:92%;
+max-width:420px;
+height:auto;
+display:block;
 border-radius:20px;
 box-shadow:0 10px 30px rgba(0,0,0,0.5);
 }
 
-/* BOTÃO SECRETO */
+/* botão descubra bem visível */
 #segredo{
-opacity:0;
-margin-top:30px;
-padding:14px 30px;
+opacity:1;
+margin-top:35px;
+padding:16px 35px;
 border:none;
-border-radius:30px;
-background:linear-gradient(45deg,#ff4d88,#ff99ac);
+border-radius:35px;
+background:linear-gradient(45deg,#ff2f7d,#ff9bb3);
 color:white;
-font-size:18px;
+font-size:20px;
 font-weight:bold;
 cursor:pointer;
 transition:0.3s;
-box-shadow:0 5px 20px rgba(255,0,100,0.4);
+box-shadow:0 0 25px rgba(255,47,125,0.8);
+text-shadow:0 2px 5px rgba(0,0,0,0.5);
 }
 
 #segredo:hover{
 transform:scale(1.08);
-box-shadow:0 10px 25px rgba(255,0,100,0.6);
+box-shadow:0 0 35px rgba(255,47,125,1);
 }
 
-/* SURPRESA */
 #surpresa{
 position:fixed;
 top:0;
@@ -183,7 +158,6 @@ pointer-events:auto;
 transform:scale(1.1);
 }
 
-/* BOTÃO VOLTAR */
 .conteudo-surpresa button{
 margin-top:20px;
 padding:10px 20px;
@@ -200,90 +174,57 @@ transition:0.3s;
 transform:scale(1.05);
 box-shadow:0 5px 15px rgba(255,0,100,0.4);
 }
-
 </style>
 </head>
 
 <body>
 
-<!-- CAPA -->
 <div class="capa">
-
 <h1>Para Você 💖</h1>
-
-<button class="botao" onclick="iniciar()">
-Abrir Carta
-</button>
-
+<button class="botao" onclick="iniciar()">Abrir Carta</button>
 </div>
 
-<!-- FRASE 1 -->
 <section class="fundo1">
-
 <p class="texto" id="msg1"></p>
-
 </section>
 
-<!-- FOTOS 1 -->
 <section class="fundo2 fotos">
-
 <img src="foto1.jpg">
 <img src="foto2.jpg">
 <img src="foto3.jpg">
 <img src="foto4.jpg">
-
 </section>
 
-<!-- FRASE 2 -->
 <section class="fundo3">
-
 <p class="texto" id="msg2"></p>
-
 </section>
 
-<!-- FOTOS 2 -->
 <section class="fundo4 fotos">
-
 <img src="foto5.jpg">
 <img src="foto6.jpg">
 <img src="foto7.jpg">
 <img src="foto8.jpg">
-
 </section>
 
-<!-- FINAL -->
 <section class="fundoFinal">
-
 <p class="texto">
 E mesmo depois de tudo...
 eu ainda escolheria você em todas as versões da minha vida 💖
 </p>
 
-<button id="segredo" onclick="mostrar()">
-Descubra 💌
-</button>
-
+<button id="segredo" onclick="mostrar()">Descubra 💌</button>
 </section>
 
-<!-- SURPRESA -->
 <div id="surpresa">
-
 <div class="conteudo-surpresa">
-
 <p>
 Eu te escolheria<br>
 em todas as vidas ❤️
 </p>
-
-<button onclick="fecharSurpresa()">
-Voltar 💖
-</button>
-
+<button onclick="fecharSurpresa()">Voltar 💖</button>
+</div>
 </div>
 
-</div>
-
-<!-- AUDIOS -->
 <audio id="musica" loop>
 <source src="musica.mp3">
 </audio>
@@ -293,9 +234,6 @@ Voltar 💖
 </audio>
 
 <script>
-
-/* TEXTOS */
-
 const texto1 = `
 Desde que você entrou na minha vida,
 tudo ficou mais bonito.
@@ -314,16 +252,11 @@ pra sempre 💖
 let i = 0;
 let j = 0;
 
-/* INICIO */
-
 function iniciar(){
-
 document.getElementById("musica").play();
 
 const batida = document.getElementById("batidaSom");
-
 batida.volume = 0.3;
-
 batida.play();
 
 setTimeout(()=>{
@@ -331,67 +264,34 @@ batida.pause();
 },5000);
 
 document.querySelector(".fundo1").scrollIntoView();
-
 escrever1();
-
 }
-
-/* DIGITAÇÃO */
 
 function escrever1(){
-
 if(i < texto1.length){
-
 document.getElementById("msg1").innerHTML += texto1.charAt(i);
-
 i++;
-
 setTimeout(escrever1,40);
-
 }else{
-
 setTimeout(escrever2,2000);
-
 }
-
 }
 
 function escrever2(){
-
 if(j < texto2.length){
-
 document.getElementById("msg2").innerHTML += texto2.charAt(j);
-
 j++;
-
 setTimeout(escrever2,40);
-
 }
-
 }
-
-/* BOTÃO SECRETO */
-
-setTimeout(()=>{
-
-document.getElementById("segredo").style.opacity="1";
-
-},8000);
-
-/* SURPRESA */
 
 function mostrar(){
-
 document.getElementById("surpresa").classList.add("ativo");
-
 }
 
 function fecharSurpresa(){
-
 document.getElementById("surpresa").classList.remove("ativo");
-
 }
-
 </script>
 
 </body>
