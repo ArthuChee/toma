@@ -318,13 +318,40 @@ pra sempre 💖
 let i = 0;
 let j = 0;
 
+/* INICIO */
+
 function iniciar(){
 
-document.getElementById("musica").play();
+const musica = document.getElementById("musica");
 
+/* começa baixinho */
+musica.volume = 0;
+
+musica.play();
+
+/* fade in */
+let volume = 0;
+
+let fade = setInterval(()=>{
+
+if(volume < 0.35){
+
+volume += 0.02;
+
+musica.volume = volume;
+
+}else{
+
+clearInterval(fade);
+
+}
+
+},200);
+
+/* batida */
 const batida = document.getElementById("batidaSom");
 
-batida.volume = 0.3;
+batida.volume = 0.2;
 
 batida.play();
 
@@ -337,6 +364,8 @@ document.querySelector(".fundo1").scrollIntoView();
 escrever1();
 
 }
+
+/* DIGITAÇÃO */
 
 function escrever1(){
 
@@ -369,6 +398,8 @@ setTimeout(escrever2,40);
 }
 
 }
+
+/* SURPRESA */
 
 function mostrar(){
 
